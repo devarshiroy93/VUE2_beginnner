@@ -1,0 +1,42 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+<script src="https://unpkg.com/vue"></script>
+
+
+
+<div id= "root">
+ {{message}}
+ 
+ <div class="col-md-3"></div>
+ <div class="col-md-6">
+ <div>
+ <div v-for="q in details">
+	<div class="panel panel-primary">
+		<div class="panel-heading">Question</div>
+		<div class="panel-body">{{q.question}}</div>
+	</div>
+	<div v-for = "(opt,i) in q.options">
+	<div class="well well-sm" v-bind:class ="{myClass : opt.id-1 === selected  ,selClss : opt.id-1 === selected1}"  v-on:click= "mouseClick(i,opt.id,opt)" v-on:mouseover= "mouseOver(i,opt.id,opt)" >{{opt.text}}</div>
+	</div>
+	
+	<div class= "col-md-2"></div>
+	<div class= "col-md-2"></div>
+	<div class= "col-md-6"><button type="button" class="btn btn-primary btn-md" v-on:click = "checkAnswer()">Check Answer</button></div>
+	
+	<div class= "col-md-1"></div>
+</div>
+</div> 
+ 
+ </div>
+ <div class="col-md-3"></div>
+ 
+</div>
+<script src='Main.js'></script>
+<body>
+
+</html>
