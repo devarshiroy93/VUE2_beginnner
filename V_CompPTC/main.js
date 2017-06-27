@@ -1,12 +1,15 @@
 Vue.component('questionContainer',{
     props:['question'],
-    template : ` <div><div><mcq-behaviour v-on:change-question= "updateQuestion($event)" :data = "question[x]"></mcq-behaviour></div></div>`, 
+    template : ` <div><div><mcq-behaviour v-on:change-question= "updateQuestion($event)" :data = "question[x]" :previousActive = "prevActive" :nextActive = "nextActive"></mcq-behaviour></div></div>`, 
     data : function() { 
-        return {x :0}
+        return {x :0, prevActive :false,nextActive : true}
+		            
     },
     methods: {
         updateQuestion : function(button){
-            button === 'next' ? this.x++ : this.x--
+            button === 'next' ? this.x++ : this.x--;
+			this.x === this.question.length-1 ? this.nextActive = false : this.nextActive = true;
+			this.x === 0 ? this.prevActive = false : this.prevActive = true;	
         }
     }
 })
@@ -15,7 +18,7 @@ Vue.component('questionContainer',{
 
 
 Vue.component('mcqBehaviour', {
-  props: ['data'],
+  props: ['data','previousActive','nextActive'],
   template: `	
   <div class= "mngMrgin">
   
@@ -27,9 +30,9 @@ Vue.component('mcqBehaviour', {
 			<div class="well well-sm" v-bind:class ="{myClass : opt.id-1 === selected  ,selClss : opt.id-1 === selected1}" v-on:click= "mouseClick(i,opt.id,opt)" >{{opt.text}}</div>
 		</div>
 	<div class ="row">	
-	<div class="col-md-4"><button type="button" class="btn btn-primary btn-md" v-on:click = "previousPress()">Previous</button></div>
+	<div class="col-md-4"><button type="button" class="btn btn-primary btn-md"  :disabled="!previousActive" v-on:click = "previousPress()">Previous</button></div>
 	<div class="col-md-4"><button type="button" class="btn btn-primary btn-md" v-on:click = "checkAnswer()">Check Answer</button></div>
-	<div class="col-md-4"><button type="button" class="btn btn-primary btn-md" v-on:click = "nextPress()">NEXT</button></div>
+	<div class="col-md-4"><button type="button" class="btn btn-primary btn-md" :disabled="!nextActive" v-on:click = "nextPress()">NEXT</button></div>
 	</div>
 	<hr>
 	</div>
@@ -98,6 +101,17 @@ var app= new Vue({
     {'text' : 'option3' ,id : 4},
     ],
     "question": "Hello, 2nd question! You have 3 unread messages.",
+	"correctAnsid" : 4
+  },
+  {
+    "_id": "5927f07c3c1501cd57889080",
+    "options": [
+      {'text' : 'inky',id : 1},
+      {'text' : 'pinky' ,id : 2 },
+      {'text' : 'ponky',id : 3},
+    {'text' : 'crazy' ,id : 4},
+    ],
+    "question": "What is the Question?",
 	"correctAnsid" : 4
   }
 ]
