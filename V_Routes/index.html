@@ -1,17 +1,39 @@
 <html>
+
 <head>
-<script src="https://unpkg.com/vue"></script>
-<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.16.2/axios.js"></script>
+  <script src="https://unpkg.com/vue"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet" type="text/css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.16.2/axios.js"></script>
+  <link href="https://unpkg.com/vuetify/dist/vuetify.min.css" rel="stylesheet" type="text/css">
+  <style>
+    #example-1 {
+      color: #fff;
+      text-align: center;
+    }
+    
+    #example-1 .flex {
+      margin-bottom: 16px;
+    }
+  </style>
+  <script src="https://unpkg.com/vuetify/dist/vuetify.min.js"></script>
 </head>
 
 <body>
 
-<div id="app">
-<p><router-link to="/page1/posts">Go to Page 1</router-link></p>
-<h2><router-link to="/page2/posts">Go to Page 2</router-link></h3>
-  <router-view></router-view>
-</div>
-<script src="app.js"></script>
+  <div id="app">
+    <p>
+      <router-link to="/page1/posts">Login..</router-link>
+    </p>
+    <p>
+      <router-link to="/page2/posts">List Of all public posts</router-link>
+    </p>
+    <v-container fluid>
+      <router-view></router-view>
+    </v-container>
+  </div>
+
+  <script src="app.js"></script>
+
 </body>
 <html>
